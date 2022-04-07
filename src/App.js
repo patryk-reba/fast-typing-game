@@ -28,7 +28,7 @@ function App() {
 
 
     return (
-        <div  >
+        <div >
             <h1 className="title">Fast Typing Game</h1>
             <FaKeyboard size={60} />
             {wordCount > 2 && !isTimeRunning ? <h1>Wow! You can rewrite: {wordCount * 6} words/min</h1> : <h1>How fast do you type?</h1>}
@@ -42,7 +42,7 @@ function App() {
                 <textarea
                     ref={textBoxRef}
                     onChange={handleChange}
-                    value={isTimeRunning ? text : "Press ENTER and rewrite text from box above as fast as you"}
+                    value={isTimeRunning ? text : "Press ENTER and rewrite text from box above as fast as you can!"}
                     disabled={!isTimeRunning}
                 />
             </div>

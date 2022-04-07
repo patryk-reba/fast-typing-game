@@ -43,6 +43,16 @@ function useWordGame(startingTime = 10) {
         enterRef.current.focus()
     }, [])
 
+
+
+    setInterval(() => {
+
+
+        enterRef.current.focus()
+
+    }, 10)
+
+
     function startGame() {
         setIsTimeRunning(true)
         setTimeRemaining(startingTime)
