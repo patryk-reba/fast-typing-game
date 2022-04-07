@@ -62,7 +62,7 @@ function useWordGame(startingTime = 10) {
         } else if (timeRemaining === 0) {
             endGame()
         }
-        calculateWordCount(text)
+        setWordCount(calculateWordCount(text))
     }, [timeRemaining, isTimeRunning])
 
 
