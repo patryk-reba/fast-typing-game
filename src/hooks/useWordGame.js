@@ -16,12 +16,12 @@ function useWordGame(startingTime = 10) {
         setText(value)
     }
     const writtenWordsArr = text.split(" ")
-
+    let newArr = ""
     function calculateWordCount(text) {
         const wordsArr = text.trim().split(" ")
         const displayArr = displayedWords.trim().split(" ")
         // const newArr = wordsArr.filter(word => word === displayedWords)
-        let newArr = wordsArr.filter(word => {
+        newArr = wordsArr.filter(word => {
             for (let i = 0; i < displayArr.length; i++) {
                 if (word === displayArr[i]) {
 
@@ -45,12 +45,12 @@ function useWordGame(startingTime = 10) {
 
 
 
-    setInterval(() => {
+    const interval = setInterval(() => {
 
 
         enterRef.current.focus()
 
-    }, 10)
+    }, 3000)
 
 
     function startGame() {
@@ -68,8 +68,8 @@ function useWordGame(startingTime = 10) {
     function endGame() {
         setIsTimeRunning(false)
         setWordCount(calculateWordCount(text))
-
-        setTimeout(() => { enterRef.current.focus() }, 3000)
+        enterRef.current.disabled = true
+        setTimeout(() => { enterRef.current.disabled = false }, 4000)
     }
 
     useEffect(() => {
