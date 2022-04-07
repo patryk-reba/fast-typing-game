@@ -9,6 +9,7 @@ function useWordGame(startingTime = 10) {
     const [wordCount, setWordCount] = useState(0)
     const [displayedWords, setDisplayedWords] = useState("") //moje
     const textBoxRef = useRef(null)
+    const enterRef = useRef(null)
 
     function handleChange(e) {
         const { value } = e.target
@@ -23,21 +24,24 @@ function useWordGame(startingTime = 10) {
         let newArr = wordsArr.filter(word => {
             for (let i = 0; i < displayArr.length; i++) {
                 if (word === displayArr[i]) {
+
                     return word
                 }
             }
-        })
-        // for (let i = 0; i < displayArr.length; i++) {
-        //     if (wordsArr[i] == displayArr[i]) {
-        //         return newArr.push(displayArr[i])
-        //     }
-        // }
 
-        console.log(displayArr)
-        console.log(wordsArr)
-        console.log(newArr)
+        })
+
+
+        // console.log(displayArr)
+        // console.log(wordsArr)
+        // console.log(newArr)
         return newArr.length
     }
+
+    useEffect(() => {
+
+        enterRef.current.focus()
+    }, [])
 
     function startGame() {
         setIsTimeRunning(true)
@@ -47,11 +51,15 @@ function useWordGame(startingTime = 10) {
         textBoxRef.current.focus()
         wordsMixer(words)
         setWordCount(0)
+
+
     }
 
     function endGame() {
         setIsTimeRunning(false)
         setWordCount(calculateWordCount(text))
+
+        setTimeout(() => { enterRef.current.focus() }, 3000)
     }
 
     useEffect(() => {
@@ -62,9 +70,12 @@ function useWordGame(startingTime = 10) {
         } else if (timeRemaining === 0) {
             endGame()
         }
-        setWordCount(calculateWordCount(text))
+
     }, [timeRemaining, isTimeRunning])
 
+    useEffect(() => {
+        setWordCount(calculateWordCount(text))
+    }, [text])
 
     //   MOJE ************************************************
     const words = wordlist.split(' ')
@@ -89,7 +100,7 @@ function useWordGame(startingTime = 10) {
 
 
 
-    return { textBoxRef, handleChange, text, isTimeRunning, timeRemaining, startGame, wordCount, displayedWords, wordsMixer, generateRandomWord, writtenWordsArr }
+    return { textBoxRef, handleChange, text, isTimeRunning, timeRemaining, startGame, wordCount, displayedWords, wordsMixer, generateRandomWord, writtenWordsArr, enterRef }
 }
 
 export default useWordGame

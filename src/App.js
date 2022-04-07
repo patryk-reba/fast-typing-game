@@ -22,7 +22,8 @@ function App() {
         displayedWords,
         wordsMixer,
         generateRandomWord,
-        writtenWordsArr
+        writtenWordsArr,
+        enterRef
     } = useWordGame(10)
 
 
@@ -41,19 +42,20 @@ function App() {
                 <textarea
                     ref={textBoxRef}
                     onChange={handleChange}
-                    value={text}
+                    value={isTimeRunning ? text : "Press ENTER and rewrite text from box above as fast as you"}
                     disabled={!isTimeRunning}
                 />
             </div>
             <h4>Time remaining: {timeRemaining}</h4>
+            <h1>Correct words count: {wordCount}</h1>
             <button
                 onClick={startGame}
                 disabled={isTimeRunning}
+                ref={enterRef}
             >
                 {wordCount > 2 && !isTimeRunning ? "Try again" : "Start"}
             </button>
 
-            <h1>Correct words count: {wordCount}</h1>
 
         </div>
     )
