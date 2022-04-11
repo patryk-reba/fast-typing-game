@@ -69,7 +69,7 @@ function useWordGame(startingTime = 10) {
         setIsTimeRunning(false)
         setWordCount(calculateWordCount(text))
         enterRef.current.disabled = true
-        setTimeout(() => { enterRef.current.disabled = false }, 4000)
+        setTimeout(() => { enterRef.current.disabled = false }, 2000)
     }
 
     useEffect(() => {
