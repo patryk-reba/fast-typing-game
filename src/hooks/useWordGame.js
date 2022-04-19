@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react"
 import wordlist from "../wordlist"
 
-
 function useWordGame(startingTime = 10) {
     const [text, setText] = useState("")
     const [timeRemaining, setTimeRemaining] = useState(startingTime)
     const [isTimeRunning, setIsTimeRunning] = useState(false)
     const [wordCount, setWordCount] = useState(0)
-    const [displayedWords, setDisplayedWords] = useState("") //moje
+    const [displayedWords, setDisplayedWords] = useState("")
     const textBoxRef = useRef(null)
     const enterRef = useRef(null)
 
@@ -24,34 +23,21 @@ function useWordGame(startingTime = 10) {
         newArr = wordsArr.filter(word => {
             for (let i = 0; i < displayArr.length; i++) {
                 if (word === displayArr[i]) {
-
                     return word
                 }
             }
-
         })
-
-
-        // console.log(displayArr)
-        // console.log(wordsArr)
-        // console.log(newArr)
         return newArr.length
     }
 
     useEffect(() => {
-
         enterRef.current.focus()
     }, [])
 
-
-
     const interval = setInterval(() => {
-
-
         enterRef.current.focus()
 
     }, 3000)
-
 
     function startGame() {
         setIsTimeRunning(true)
@@ -61,8 +47,6 @@ function useWordGame(startingTime = 10) {
         textBoxRef.current.focus()
         wordsMixer(words)
         setWordCount(0)
-
-
     }
 
     function endGame() {
@@ -87,7 +71,6 @@ function useWordGame(startingTime = 10) {
         setWordCount(calculateWordCount(text))
     }, [text])
 
-    //   MOJE ************************************************
     const words = wordlist.split(' ')
 
     function generateRandomWord(arr) {
@@ -106,10 +89,6 @@ function useWordGame(startingTime = 10) {
         })
 
     }
-
-
-
-
     return { textBoxRef, handleChange, text, isTimeRunning, timeRemaining, startGame, wordCount, displayedWords, wordsMixer, generateRandomWord, writtenWordsArr, enterRef }
 }
 

@@ -3,13 +3,6 @@ import useWordGame from "./hooks/useWordGame"
 import './styles.css'
 import { FaKeyboard } from "react-icons/fa"
 
-// 1. check if words are correct
-// 2. count correct words
-// 3. set time buttons
-// 4. 10 words show, when all are good, next 10 (.asign?)
-// 5. change collor of correct word
-
-
 function App() {
     const {
         textBoxRef,
